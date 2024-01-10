@@ -23,14 +23,16 @@ const PhotoList: FC = () => {
 
   let content = (
     <>
-      <FlatList
-        data={photos}
-        contentContainerStyle={styles.list}
-        keyExtractor={item => item.id}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        renderItem={({item: photo}) => <PhotoItem photo={photo} />}
-      />
+      {!!photos.length && (
+        <FlatList
+          data={photos}
+          contentContainerStyle={styles.list}
+          keyExtractor={item => item.id}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+          renderItem={({item: photo}) => <PhotoItem photo={photo} />}
+        />
+      )}
       {isLoading && <ActivityIndicator size="large" color={Colors.primary} />}
     </>
   );
